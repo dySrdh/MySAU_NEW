@@ -1,0 +1,395 @@
+/* =================================
+   PRESENSI ONLINE PAGE
+==================================== */
+#presensiPageContent {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2 / 5;
+    max-width: 100%;
+    gap: 20px;
+}
+
+.presensi-page-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    box-sizing: border-box;
+}
+
+.presensi-header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 30px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    flex-shrink: 0;
+    gap: 20px;
+    min-height: 60px;
+    margin: 0;
+}
+
+.presensi-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.presensi-title-group i {
+    font-size: 28px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #e6f0ff;
+    color: #2176C0;
+}
+
+.presensi-title-group h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.presensi-content-wrapper {
+    padding: 30px;
+}
+
+.presensi-container {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Info & DateTime Combined Box */
+.presensi-info-datetime-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    color: #333;
+}
+
+.worker-info h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.worker-subtitle {
+    font-size: 0.85rem;
+    margin: 0;
+    color: #666;
+}
+
+.datetime-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #2176C0;
+}
+
+.datetime-info i {
+    font-size: 1.2rem;
+    color: #2176C0;
+}
+
+/* Section Container */
+.presensi-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Section Labels */
+.section-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-label i {
+    font-size: 1.1rem;
+    color: #2176C0;
+}
+
+/* Camera Section */
+.camera-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #e0e0e0;
+}
+
+#cameraVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#capturedImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    gap: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.camera-overlay:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.camera-overlay i {
+    font-size: 3.5rem;
+}
+
+.camera-overlay p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.camera-overlay.hidden {
+    display: none;
+}
+
+/* Camera Buttons */
+.camera-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-camera {
+    flex: 1;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #2176C0;
+}
+
+.btn-camera:hover {
+    background-color: #1a5d99;
+}
+
+.btn-camera:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-camera i {
+    font-size: 1.2rem;
+}
+
+/* Retake button as overlay on captured image */
+.btn-retake-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    background-color: rgba(108, 117, 125, 0.95);
+    border: 3px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-retake-overlay:hover {
+    background-color: rgba(90, 98, 104, 0.95);
+    transform: rotate(180deg);
+}
+
+.btn-retake-overlay i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* Hidden button utility class */
+.hidden-button {
+    display: none !important;
+}
+
+/* Location Section */
+.location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.location-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.location-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.location-field input {
+    padding: 12px;
+    font-size: 0.9rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Presensi Type Select */
+#presensiTypeSelect {
+    padding: 12px;
+    font-size: 0.95rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+#presensiTypeSelect:focus {
+    outline: none;
+    border-color: #2176C0;
+}
+
+/* Submit Section */
+.presensi-submit-section {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.btn-submit-presensi {
+    padding: 14px 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-submit-presensi:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+.btn-submit-presensi:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-submit-presensi i {
+    font-size: 1.2rem;
+}
+
+/* Success Modal Styling */
+.modal-success .modal-icon.success-icon {
+    color: #28a745;
+}
+
+.success-details {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.success-details p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.success-details strong {
+    color: #666;
+    font-weight: 600;
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+==================================== */
+@media (max-width: 768px) {
+    #presensiPageContent {
+        grid-column: 1 / -1;
+    }
+    
+    .presensi-info-datetime-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .location-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .camera-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-submit-presensi {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .presensi-container {
+        max-width: 100%;
+    }
+}

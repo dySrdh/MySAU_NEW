@@ -1,0 +1,356 @@
+/* == KOMPONEN KALENDER == */
+.calendar-card {
+    padding: 20px;
+}
+
+.calendar-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+}
+
+.calendar-header strong { 
+    font-size: 1.1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.calendar-header strong:hover {
+    color: #2176C0;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 5px;
+}
+
+.calendar-nav button { 
+    background: white; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 50%; 
+    width: 32px; 
+    height: 32px; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.calendar-nav button:hover {
+    background-color: #f8f9fa;
+    border-color: #2176C0;
+}
+
+.calendar-nav button i {
+    font-size: 18px;
+}
+
+/* Day names header */
+.calendar-grid { 
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 0;
+    text-align: center; 
+    margin-bottom: 0;
+}
+
+.day-name { 
+    font-weight: 600; 
+    color: #888; 
+    font-size: 0.7rem;
+    padding: 8px 4px;
+    text-transform: uppercase;
+}
+
+/* Calendar days container */
+.calendar-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.calendar-day {
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+    user-select: none;
+    background-color: white;
+    min-height: 40px;
+}
+
+/* Remove borders on edges */
+.calendar-day:nth-child(7n) {
+    border-right: none;
+}
+
+.calendar-day:hover {
+    background-color: #f8f9fa;
+}
+
+/* SELECTED DATE - KOTAK PENUH (bukan lingkaran) */
+.calendar-day.day-active {
+    background-color: #2176C0;
+    color: white;
+    font-weight: 600;
+    border-radius: 0;
+}
+
+.calendar-day.day-off { 
+    color: #ccc; 
+    background-color: #fafafa;
+}
+
+.calendar-day.has-event::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    width: 4px;
+    height: 4px;
+    background-color: #dc3545;
+    border-radius: 50%;
+}
+
+.calendar-day.has-birthday::before {
+    content: '🎂';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 10px;
+}
+
+.calendar-day.day-active.has-event::after {
+    background-color: white;
+}
+
+/* Event Details - SCROLL HANYA UNTUK 3+ EVENT */
+.calendar-event-details {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    display: none;
+    max-height: 160px; /* Cukup untuk 2 event */
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.calendar-event-details.show {
+    display: block;
+}
+
+/* Custom scrollbar styling */
+.calendar-event-details::-webkit-scrollbar {
+    width: 6px;
+}
+
+.calendar-event-details::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.calendar-event-details::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.calendar-event-details::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.calendar-event-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.calendar-event-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.calendar-event-item img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.calendar-event-content {
+    flex-grow: 1;
+}
+
+.calendar-event-time {
+    font-size: 0.7rem;
+    color: #888;
+    font-weight: 600;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+}
+
+.calendar-event-title {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Modal */
+.calendar-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.calendar-modal-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.calendar-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.calendar-modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.calendar-modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.calendar-modal-close:hover {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.calendar-modal-body {
+    padding: 20px;
+}
+
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.month-btn {
+    padding: 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.month-btn:hover {
+    background-color: #e9ecef;
+    border-color: #2176C0;
+}
+
+.month-btn.active {
+    background-color: #2176C0;
+    color: white;
+    border-color: #2176C0;
+}
+
+.year-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.year-btn {
+    padding: 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.year-btn:hover {
+    background-color: #e9ecef;
+    border-color: #2176C0;
+}
+
+.year-btn.active {
+    background-color: #2176C0;
+    color: white;
+    border-color: #2176C0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .calendar-day {
+        font-size: 0.75rem;
+        min-height: 35px;
+    }
+    
+    .day-name {
+        font-size: 0.65rem;
+        padding: 6px 2px;
+    }
+    
+    .month-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .year-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .calendar-event-details {
+        max-height: 140px;
+    }
+}

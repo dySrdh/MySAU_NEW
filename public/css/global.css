@@ -1,0 +1,88 @@
+/* Reset & Font Dasar */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #f5f7fb;
+    color: #333;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 1. HEADER (Struktur Grid 3 Kolom) */
+.main-header {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    display: grid;
+    /* Kolom kiri header dilebarkan */
+    grid-template-columns: 360px 1fr 340px; /* Diubah jadi 360px */
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* 2. MAIN CONTAINER (Struktur Grid 3 Kolom) */
+.main-container {
+    display: grid;
+    /* Kolom kiri container dilebarkan */
+    grid-template-columns: 360px 1fr 340px; /* Diubah jadi 360px */
+    padding: 20px;
+    gap: 20px;
+}
+
+/* 3. Garis Pemisah */
+.sidebar-left {
+    border-right: 1px solid #e0e0e0;
+    padding-right: 20px;
+}
+.content-middle {
+    border-right: 1px solid #e0e0e0;
+    padding-right: 20px;
+}
+
+/* Jarak antar card di dalam kolom */
+.sidebar-left,
+.content-middle,
+.sidebar-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Style dasar untuk SEMUA card */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Style dasar untuk header di DALAM card */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.card-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Tombol icon dasar (untuk di-override) */
+.icon-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+    position: relative;
+    padding: 4px;
+}

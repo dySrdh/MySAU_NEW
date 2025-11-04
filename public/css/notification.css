@@ -1,0 +1,258 @@
+/* =================================
+   PERBAIKAN HEADER (Badge Lonceng)
+==================================== */
+.notification-wrapper {
+    position: relative; /* Wajib agar dropdown bisa diposisikan */
+    display: flex;
+    align-items: center;
+}
+
+.notification-button {
+    position: relative;
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;      /* Pindah ke atas */
+    right: -5px;    /* Pindah ke kanan */
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e74c3c; /* Merah */
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    border: 2px solid white;
+    pointer-events: none;
+}
+
+
+/* =================================
+   PERBAIKAN DROPDOWN NOTIFIKASI
+==================================== */
+
+.notification-dropdown {
+    /* 1. Perbaikan Posisi: Rata kanan DENGAN tombol */
+    position: absolute;
+    top: calc(100% + 15px); /* Jarak dari ikon */
+    right: 0;  /* Rata kanan dengan .notification-wrapper */
+    width: 380px;
+    max-width: 90vw;
+    
+    /* 2. Styling & Tampilan */
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: hidden;
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.notification-dropdown.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 3. Header Notifikasi (Putih & Font Sesuai Gbr 1) */
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 16px 20px; /* Sedikit lebih tinggi */
+    background-color: #ffffff;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.notification-header h3 {
+    margin: 0;
+    font-size: 1.25rem; /* PERBAIKAN: Lebih besar */
+    font-weight: 600; /* PERBAIKAN: Sedikit tebal */
+    color: #212529;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+/* 4. Tabs (Style Gbr 1) */
+.notification-tabs {
+    display: flex;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e9ecef;
+    padding: 0 10px;
+}
+
+.notification-tab {
+    background: none;
+    border: none;
+    padding: 14px 16px; /* PERBAIKAN: Sedikit lebih tinggi */
+    font-size: 0.95rem; /* PERBAIKAN: Sedikit lebih besar */
+    font-weight: 500; /* PERBAIKAN: Bobot medium */
+    color: #6c757d;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    position: relative;
+    top: 1px;
+}
+
+.notification-tab.active {
+    color: #0d6efd;
+    font-weight: 600; /* PERBAIKAN: Aktif lebih tebal */
+    border-bottom-color: #0d6efd;
+}
+
+.tab-badge {
+    display: inline-block;
+    padding: 2px 7px;
+    font-size: 0.75rem;
+    border-radius: 20px;
+    background-color: #e9ecef;
+    color: #495057;
+    margin-left: 6px;
+    font-weight: 700;
+}
+
+.notification-tab.active .tab-badge {
+    background-color: #e6f0ff;
+    color: #0d6efd;
+}
+
+/* 5. Konten & List (Style Gbr 1) */
+.notification-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notification-empty {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.notification-empty img {
+    width: 120px;
+    opacity: 0.7;
+    margin-bottom: 10px;
+}
+
+.notification-empty p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-item {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background-color: #f8f9fa;
+}
+
+.notification-item.unread {
+    /* Atur jika ingin unread beda, Gbr 1 & 2 tidak terlihat beda */
+    /* background-color: #f8f9fa; */
+}
+.notification-item.unread:hover {
+    background-color: #f1f3f5;
+}
+
+.notification-item-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.notification-item-content {
+    flex-grow: 1;
+    font-size: 0.9rem; /* PERBAIKAN: Ukuran dasar 0.9rem */
+    color: #495057;
+    line-height: 1.5;
+}
+
+.notification-item-content p {
+    margin: 0;
+}
+
+/* PERBAIKAN: Nama pengguna lebih tebal */
+.notification-item-content p strong {
+    color: #212529;
+    font-weight: 600;
+}
+
+/* PERBAIKAN: Tata letak timestamp & link (sesuai Gbr 1) */
+.notification-item-meta {
+    margin-top: 5px; /* Jarak dari teks di atas */
+}
+
+.notification-item-timestamp {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.notification-task-link {
+    font-size: 0.85rem;
+    color: #0d6efd;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 10px; /* Jarak dari timestamp */
+}
+
+.notification-task-link:hover {
+    text-decoration: underline;
+}
+
+/* Khusus untuk layout Gbr 1 (Task Details di baris baru) */
+.notification-item-content p + .notification-item-meta {
+     margin-top: 6px;
+}
+
+.notification-item-meta.task-meta .notification-task-link {
+    display: block; /* Membuat "Task Details" di baris baru */
+    margin-left: 0;
+    margin-top: 4px; /* Jarak dari timestamp */
+}
+

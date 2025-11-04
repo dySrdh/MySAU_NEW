@@ -1,0 +1,195 @@
+/* =================================
+   DATA PRESENSI PAGE
+==================================== */
+#dataPresensiPageContent {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2 / 5;
+    max-width: 100%;
+    gap: 20px;
+}
+
+.data-presensi-page-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    box-sizing: border-box;
+}
+
+.data-presensi-header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 30px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    flex-shrink: 0;
+    gap: 20px;
+    min-height: 60px;
+    margin: 0;
+}
+
+.data-presensi-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.data-presensi-title-group i {
+    font-size: 28px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #e6f0ff;
+    color: #2176C0;
+}
+
+.data-presensi-title-group h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.data-presensi-controls-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.data-presensi-content-scroll {
+    padding: 30px;
+}
+
+/* Presensi Table */
+.data-presensi-table-container {
+    overflow-x: auto;
+}
+
+.presensi-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.presensi-table thead {
+    background-color: #2176C0;
+    color: white;
+}
+
+.presensi-table th {
+    padding: 15px;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.presensi-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s ease;
+}
+
+.presensi-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.presensi-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.presensi-table td {
+    padding: 15px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.presensi-table td.clickable {
+    cursor: pointer;
+    color: #2176C0;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.presensi-table td.clickable:hover {
+    color: #1a5d99;
+    text-decoration: underline;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-badge.hadir {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.terlambat {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.tidak-hadir {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Detail Modal */
+.detail-field {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.detail-field:last-child {
+    border-bottom: none;
+}
+
+.detail-field label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.detail-field span {
+    font-size: 0.9rem;
+    color: #333;
+    text-align: right;
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+==================================== */
+@media (max-width: 768px) {
+    #dataPresensiPageContent {
+        grid-column: 1 / -1;
+    }
+    
+    .data-presensi-header-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .presensi-table {
+        font-size: 0.85rem;
+    }
+    
+    .presensi-table th,
+    .presensi-table td {
+        padding: 10px 8px;
+    }
+}
