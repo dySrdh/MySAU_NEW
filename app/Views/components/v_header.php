@@ -1,7 +1,9 @@
 <header class="main-header">
     
     <div class="header-left">
-        <img src="<?= base_url('images/logo_mysau.png') ?>" alt="MySAU Logo" class="header-logo">
+        <a href="<?= base_url('/') ?>" style="text-decoration: none;">
+            <img src="<?= base_url('images/logo_mysau.png') ?>" alt="MySAU Logo" class="header-logo">
+        </a>
     </div>
 
     <div class="header-greeting">
@@ -20,7 +22,6 @@
                 <span class="notification-count" id="notificationCount" style="display: none;">0</span>
             </button>
 
-            <!-- Dropdown Notifikasi -->
             <?= $this->include('components/v_notification_dropdown') ?>
         </div>
 
@@ -31,4 +32,3 @@
     </div>
 
 </header>
-

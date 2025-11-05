@@ -258,4 +258,49 @@
     .family-tabs {
         flex-direction: column;
     }
+    /* =================================
+    STYLE TAMBAHAN UNTUK HEADER HALAMAN
+==================================== */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Jarak bawah akan diatur oleh 'gap: 20px' 
+       dari #profilePageContent, jadi tidak perlu margin-bottom */
+}
+
+.page-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.page-header h2 i {
+    color: #2176C0; /* Warna biru */
+}
+
+.page-header .back-link {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2176C0; /* Warna biru */
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.page-header .back-link:hover {
+    background-color: #e6f0ff; /* Biru muda saat hover */
+}
+
+.page-header .back-link i {
+    font-size: 1.2rem;
+}
 }

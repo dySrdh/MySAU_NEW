@@ -142,21 +142,17 @@
                     
                     currentMonth = getFullMonthName(this.getAttribute('data-month'));
                     
-                    // Update button text
                     if (filterBtn) {
                         const span = filterBtn.querySelector('span');
                         if (span) span.textContent = `${currentMonth} ${currentYear}`;
                     }
                     
-                    // Close modal
                     modal.style.display = 'none';
                     
-                    // Reload data (in real app, would filter by month)
                     loadPresensiData();
                 });
             });
 
-            // Close modals on backdrop click
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.style.display = 'none';
@@ -220,11 +216,9 @@
             returnBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Use global showDashboard function from menu_pages.js
                 if (typeof window.showDashboard === 'function') {
                     window.showDashboard();
                 } else {
-                    // Fallback
                     const dataPresensiPage = document.getElementById('dataPresensiPageContent');
                     if (dataPresensiPage) dataPresensiPage.style.display = 'none';
                     
@@ -234,18 +228,24 @@
             });
         }
     }
-
-    // Initialize when data presensi page is shown
+    
+    // --- INI BAGIAN PERBAIKANNYA ---
+    
+    // 1. Selalu ekspos fungsi init untuk v_home.php
     window.initDataPresensiPage = initDataPresensiPage;
 
-    // Auto-initialize if data presensi page exists and is visible
-    if (document.getElementById('dataPresensiPageContent')) {
-        document.addEventListener('DOMContentLoaded', function() {
-            const dataPresensiPage = document.getElementById('dataPresensiPageContent');
-            if (dataPresensiPage && dataPresensiPage.style.display !== 'none') {
-                initDataPresensiPage();
+    // 2. Selalu pasang listener untuk data_presensi.php (halaman mandiri)
+    document.addEventListener('DOMContentLoaded', function() {
+        const dataPresensiPage = document.getElementById('dataPresensiPageContent');
+        
+        // Cek apakah div #dataPresensiPageContent ada di halaman ini
+        if (dataPresensiPage) {
+            // Cek apakah kita di v_home.php (dimana div-nya 'none')
+            // ATAU di data_presensi.php (dimana style-nya 'none')
+            if (dataPresensiPage.style.display !== 'none') {
+                 initDataPresensiPage();
             }
-        });
-    }
+        }
+    });
 
 })();

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task History - My SAU</title>
+    <title>Ganti Password - My SAU</title>
 
     <link rel="stylesheet" href="<?= base_url('css/global.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/home.css') ?>">
@@ -11,27 +11,12 @@
     <link rel="stylesheet" href="<?= base_url('css/notification.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/menu_pages.css') ?>">
     
-    <link rel="stylesheet" href="<?= base_url('css/history.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/profile.css') ?>"> <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="<?= base_url('css/change_password.css') ?>">
 
-    <style>
-        /* Style ini seharusnya dipindah ke file .css (misal: home.css atau global.css) 
-          agar tidak ada di sini, tapi untuk sementara tidak apa-apa.
-        */
-        .main-content-wrapper {
-            grid-column: 2 / 5; /* Diperbarui: 2 / 5 agar mengisi tengah & kanan */
-            flex-grow: 1;
-            width: 100%;
-            display: flex; /* Tambahkan ini agar konten di dalamnya bisa diatur */
-            flex-direction: column;
-        }
-        .history-page-container {
-            width: 100%;
-            max-width: none;
-        }
-    </style>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+
     <?= $this->include('components/v_header') ?>
 
     <div class="main-container">
@@ -41,32 +26,27 @@
             <?= $this->include('components/v_todo') ?>
         </aside>
 
-        <div class="main-content-wrapper">
-            <?= $this->include('components/v_page_history') ?>
-        </div> 
+        <?= $this->include('components/v_page_change_password') ?>
 
     </div> <?= $this->include('components/v_modals_todo') ?>
 
     <script>
-        // Variabel global JS
+        // Data PHP ke JS
         const BASE_URL = "<?= base_url() ?>";
-        const CURRENT_PAGE = "<?= $current_page ?>";
-        const ALL_WORKERS_DATA = <?= json_encode($workers ?? []) ?>;
+        const CURRENT_PAGE = "<?= $current_page ?? 'change-password' ?>";
     </script>
-
-    <script src="<?= base_url('js/notification.js') ?>"></script>
-    <script src="<?= base_url('js/menu_pages.js') ?>"></script>
     
+    <script src="<?= base_url('js/notification.js') ?>"></script>
     <script src="<?= base_url('js/task-utils.js') ?>"></script>
     <script src="<?= base_url('js/task-render.js') ?>"></script>
     <script src="<?= base_url('js/task-storage.js') ?>"></script>
     <script src="<?= base_url('js/task-modals.js') ?>"></script>
     <script src="<?= base_url('js/task-main.js') ?>"></script>
     
-    <script src="<?= base_url('js/history.js') ?>"></script>
-    
+    <script src="<?= base_url('js/change_password.js') ?>"></script>
+
     <script>
-        // Script Dropdown Header (jika belum ada di file JS lain)
+        // Script Dropdown Header (Sama seperti halaman lain)
         const profileBtn = document.getElementById('profile-settings-btn');
         const profileMenu = document.getElementById('profile-dropdown-menu');
         const profileArrow = document.getElementById('profile-arrow-icon');

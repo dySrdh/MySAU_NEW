@@ -1,15 +1,14 @@
 // =========================================
-// HISTORY PAGE SCRIPT (INTEGRATED WITH ROUTING)
+// HISTORY PAGE SCRIPT (SEPARATE PAGE VERSION)
 // =========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Only run if we're on the history page
+    if (CURRENT_PAGE !== 'history') return;
+    
     console.log('🚀 History module initialized');
     
     // === DOM ELEMENTS ===
-    const mainDashboardContent = document.getElementById('mainDashboardContent');
-    const historyPageContent = document.getElementById('historyPageContent');
-    const viewHistoryLink = document.getElementById('viewHistoryLink');
-    const returnToMainPageLink = document.getElementById('returnToMainPageLink');
     const historyTaskGridScroll = document.getElementById('historyTaskGridScroll');
     const historyTaskGridContainer = document.getElementById('historyTaskGridContainer');
     
@@ -32,31 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentHistoryTaskId = null;
 
+    // === INITIALIZE ===
+    loadHistoryTasks();
+
     // === EVENT LISTENERS ===
     
-    // View History Link - use global navigation function
-    if (viewHistoryLink) {
-        viewHistoryLink.addEventListener('click', (e) => {
+    // Return to Dashboard button
+    const returnBtn = document.getElementById('returnToMainPageLink');
+    if (returnBtn) {
+        returnBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log('🔵 View History clicked');
-            if (typeof showHistoryPage === 'function') {
-                showHistoryPage();
-            } else {
-                console.error('❌ showHistoryPage function not found');
-            }
-        });
-    }
-
-    // Return to Main Page - use global navigation function
-    if (returnToMainPageLink) {
-        returnToMainPageLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log('🔵 Return to Main clicked from History');
-            if (typeof showDashboard === 'function') {
-                showDashboard();
-            } else {
-                console.error('❌ showDashboard function not found');
-            }
+            window.navigateTo('dashboard');
         });
     }
     
@@ -336,27 +321,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // 4. Tutup modal history
             closeHistoryDetailModalFunc();
 
-            // 5. Set current editing task ID
-            if (typeof window.setCurrentEditingTaskId === 'function') {
-                window.setCurrentEditingTaskId(currentHistoryTaskId);
-            }
-
-            // 6. Buka modal EDIT
-            if (typeof window.openEditTaskModal === 'function') {
-                setTimeout(() => {
-                    window.openEditTaskModal();
-                }, 200);
-            } else if (typeof openEditTaskModal === 'function') {
-                setTimeout(() => {
-                    openEditTaskModal();
-                }, 200);
-            } else {
-                alert('Task has been restored! Due date set to 7 days from now.');
-                // Navigate back to home
-                if (typeof showDashboard === 'function') {
-                    showDashboard();
-                }
-            }
+            // 5. Navigate back to dashboard
+            alert('Task has been restored! Due date set to 7 days from now. You can edit it from the dashboard.');
+            window.navigateTo('dashboard');
         } else {
             console.error('❌ Task not found in storage');
         }
@@ -379,8 +346,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         document.body.classList.remove('modal-open');
     }
-
-    // === EXPOSE FUNCTIONS GLOBALLY ===
-    window.loadHistoryTasks = loadHistoryTasks;
-    window.openHistoryDetailModal = openHistoryDetailModal;
 });

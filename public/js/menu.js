@@ -4,25 +4,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const menuGrid = document.getElementById('appMenuGrid');
 
-    // --- Logika Menu Dashboard (Top 10) ---
     if (typeof ALL_MENUS_DATA !== 'undefined' && menuGrid) {
-        // Ambil data urutan dari in-memory storage
+        
+        // FIX 1: "Flatten" data dari Objek Kategori menjadi Array
+        const flatMasterList = Object.values(ALL_MENUS_DATA).flat();
+        
         const usageData = getMenuUsageData();
+        const sortedMenus = sortMenusByUsage(flatMasterList, usageData);
         
-        // Urutkan menu master (dari PHP) berdasarkan data usage
-        const sortedMenus = sortMenusByUsage(ALL_MENUS_DATA, usageData);
-        
-        // Ambil hanya 10 menu teratas
+        // Ini akan mengambil 10 item (jika data Anda 10) atau 6 item (jika data Anda 6)
         const top10Menus = sortedMenus.slice(0, 10);
         
-        // Render menu yang sudah diurutkan (hanya 10)
         renderMenus(top10Menus, menuGrid);
         
-        // Tambahkan listener untuk melacak klik menu
         menuGrid.addEventListener('click', (event) => {
             const menuLink = event.target.closest('.menu-item');
             if (menuLink && menuLink.dataset.menuId) {
-                // Jangan lakukan apa-apa jika user klik kanan/tengah
                 if (event.button !== 0) return; 
 
                 const menuId = parseInt(menuLink.dataset.menuId);
@@ -30,15 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 updateMenuUsage(menuId);
                 
-                // Handle navigation untuk halaman khusus
                 event.preventDefault();
                 handleMenuNavigation(menuUrl);
             }
         });
     }
-    // --- Akhir Logika Menu Dashboard ---
 });
-
 
 /**
  * Handle navigation untuk menu yang diklik
@@ -46,39 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleMenuNavigation(menuUrl) {
     console.log('🔵 Navigating to:', menuUrl);
     
-    // List halaman yang sudah dibuat
-    const specialPages = ['profile', 'presensi', 'data-presensi', 'history'];
+    // --- INI PERBAIKANNYA ---
+    // Logika SPA (specialPages, switch-case) telah dihapus.
+    // Semua link sekarang akan di-redirect.
     
-    if (specialPages.includes(menuUrl)) {
-        // Use functions from menu_pages.js
-        switch(menuUrl) {
-            case 'profile':
-                if (typeof window.showProfilePage === 'function') {
-                    window.showProfilePage();
-                }
-                break;
-            case 'presensi':
-                if (typeof window.showPresensiPage === 'function') {
-                    window.showPresensiPage();
-                }
-                break;
-            case 'data-presensi':
-                if (typeof window.showDataPresensiPage === 'function') {
-                    window.showDataPresensiPage();
-                }
-                break;
-            case 'history':
-                if (typeof window.showHistoryPage === 'function') {
-                    window.showHistoryPage();
-                }
-                break;
-            default:
-                console.warn('Page not implemented:', menuUrl);
-                break;
-        }
+    if (menuUrl.startsWith('http://') || menuUrl.startsWith('https://')) {
+         window.location.href = menuUrl;
     } else {
-        // For other menus, show alert
-        alert(`Menu "${menuUrl}" belum tersedia`);
+         // Mengarahkan browser ke halaman baru
+         // Contoh: /profile, /presensi, /data-presensi
+         window.location.href = BASE_URL + '/' + menuUrl;
     }
 }
 
@@ -97,18 +68,11 @@ function getMenuUsageData() {
  */
 function updateMenuUsage(clickedId) {
     let usageData = getMenuUsageData();
-    
-    // Hapus ID jika sudah ada (untuk dipindahkan ke depan)
     usageData = usageData.filter(id => id !== clickedId);
-    
-    // Tambahkan ID ke paling depan (paling baru)
     usageData.unshift(clickedId);
-    
-    // Simpan maksimal 50 menu terakhir untuk performa
     if (usageData.length > 50) {
         usageData = usageData.slice(0, 50);
     }
-    
     window.menuUsageData = usageData;
 }
 
@@ -117,8 +81,7 @@ function updateMenuUsage(clickedId) {
  */
 function renderMenus(menuData, menuGrid) {
     if (!menuGrid) return;
-    
-    menuGrid.innerHTML = ''; // Kosongkan grid
+    menuGrid.innerHTML = '';
     
     menuData.forEach(menu => {
         const menuHtml = `
@@ -139,25 +102,25 @@ function renderMenus(menuData, menuGrid) {
  * Mengatur urutan menu berdasarkan data usage.
  */
 function sortMenusByUsage(masterList, usageData) {
-    // Buat Peta (Map) untuk pencarian cepat berdasarkan ID
+    if (!Array.isArray(masterList)) {
+        console.error("Data menu (masterList) bukan array!", masterList);
+        return [];
+    }
     const masterMap = new Map(masterList.map(menu => [menu.id.toString(), menu]));
     
     let sortedList = [];
     
-    // 1. Tambahkan menu yang ada di usageData (sesuai urutan)
     usageData.forEach(id => {
         const menu = masterMap.get(id.toString());
         if (menu) {
             sortedList.push(menu);
-            masterMap.delete(id.toString()); // Hapus dari peta agar tidak duplikat
+            masterMap.delete(id.toString());
         }
     });
     
-    // 2. Tambahkan sisa menu (menu baru) yang tidak ada di usageData
     sortedList.push(...masterMap.values());
     
     return sortedList;
 }
 
-// Expose functions globally if needed
 window.handleMenuNavigation = handleMenuNavigation;

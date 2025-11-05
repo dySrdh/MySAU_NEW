@@ -1,12 +1,17 @@
-<!-- Return Link OUTSIDE main container -->
-<a href="#" class="return-link" id="returnToMainPageLink">
-    <i class='bx bx-chevron-left'></i> Return to Main Page
+<?php
+/*
+  FILE: components/v_page_history.php
+  Ini adalah file komponen baru yang berisi semua konten dan 
+  modal yang spesifik untuk halaman Task History.
+*/
+?>
+
+<a href="#" class="back-link" id="returnToMainFromMenus">
+    <i class='bx bx-arrow-back'></i> Kembali ke Dashboard
 </a>
 
-<!-- Main Container -->
 <div class="history-page-container card"> 
     
-    <!-- Header dengan Box/Card Design -->
     <div class="history-header-box">
         <div class="history-title-group">
             <i class='bx bxs-check-circle'></i>
@@ -24,18 +29,12 @@
         </div>
     </div>
 
-    <!-- Task List -->
     <div class="history-task-grid-scroll" id="historyTaskGridScroll">
         <div class="history-task-grid-container" id="historyTaskGridContainer">
-            <!-- Content will be loaded here by JavaScript -->
-        </div>
+            </div>
     </div>
 
-</div>
-
-
-<!-- Modal Filter Bulan -->
-<div class="modal-backdrop" id="monthFilterModalBackdrop" style="display:none;">
+</div> <div class="modal-backdrop" id="monthFilterModalBackdrop" style="display:none;">
     <div class="modal-content month-filter-modal">
         <div class="month-filter-header">
             <h3 id="monthFilterYear">2024</h3>
@@ -62,7 +61,6 @@
     </div>
 </div>
 
-<!-- Modal Detail History -->
 <div class="modal-backdrop" id="historyDetailModalBackdrop" style="display:none;">
     <div class="modal-content">
         <div class="modal-header">
@@ -84,8 +82,7 @@
             <div class="history-detail-section">
                 <span class="history-detail-label">Assignee(s)</span>
                 <div class="history-detail-assignees-grid" id="historyDetailAssignees">
-                    <!-- Assignees will be loaded here -->
-                </div>
+                    </div>
             </div>
         </div>
         <div class="modal-footer">

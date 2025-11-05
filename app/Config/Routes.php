@@ -33,3 +33,5 @@ $routes->post('api/notifications/mark-read/(:num)', 'NotificationController::mar
 $routes->get('api/tasks', 'TaskController::getTasks');
 $routes->post('api/tasks/save', 'TaskController::save');
 $routes->post('api/tasks/delete/(:num)', 'TaskController::delete/$1');
+$routes->get('change-password', 'UserController::changePassword');
+$routes->get('logout', 'AuthController::logout');

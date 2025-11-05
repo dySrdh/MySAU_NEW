@@ -3,12 +3,19 @@
 (function() {
     'use strict';
 
+    // Only run if we're on the presensi page
+    if (typeof CURRENT_PAGE !== 'undefined' && CURRENT_PAGE !== 'presensi') {
+        return;
+    }
+
     let cameraStream = null;
     let capturedImageData = null;
     let currentLocation = null;
 
     // Initialize presensi page
     function initPresensiPage() {
+        console.log('🎨 Initializing Presensi Page');
+        
         // Auto scroll to top when page opens
         scrollToTop();
         
@@ -26,13 +33,6 @@
 
     // Scroll to top function
     function scrollToTop() {
-        // Scroll main container to top
-        const mainContainer = document.querySelector('.main-container');
-        if (mainContainer) {
-            mainContainer.scrollTop = 0;
-        }
-        
-        // Also scroll window to top as fallback
         window.scrollTo({
             top: 0,
             behavior: 'instant'
@@ -69,7 +69,6 @@
         }
         
         if (retakeBtn) {
-            // Ensure retake button has hidden class initially
             retakeBtn.classList.add('hidden-button');
             retakeBtn.addEventListener('click', retakePhoto);
         }
@@ -98,12 +97,10 @@
             video.srcObject = cameraStream;
             overlay.classList.add('hidden');
             
-            // Change button to "Ambil Foto"
             activateBtn.innerHTML = '<i class="bx bx-camera"></i> Ambil Foto';
             activateBtn.onclick = capturePhoto;
             activateBtn.classList.remove('hidden-button');
             
-            // Make sure retake button is hidden when camera is active
             if (retakeBtn) {
                 retakeBtn.classList.add('hidden-button');
             }
@@ -138,21 +135,17 @@
         capturedImage.style.display = 'block';
         video.style.display = 'none';
 
-        // Stop camera stream
         if (cameraStream) {
             cameraStream.getTracks().forEach(track => track.stop());
             cameraStream = null;
         }
 
-        // Update button visibility using classes
         if (activateBtn) {
             activateBtn.classList.add('hidden-button');
-            console.log('Activate button hidden');
         }
         
         if (retakeBtn) {
             retakeBtn.classList.remove('hidden-button');
-            console.log('Retake button shown');
         }
 
         checkFormValidity();
@@ -160,8 +153,6 @@
 
     // Retake photo
     function retakePhoto() {
-        console.log('Retake photo clicked');
-        
         const video = document.getElementById('cameraVideo');
         const capturedImage = document.getElementById('capturedImage');
         const activateBtn = document.getElementById('activateCameraBtn');
@@ -171,7 +162,6 @@
         capturedImage.style.display = 'none';
         capturedImageData = null;
 
-        // Show activate button, hide retake button using classes
         if (activateBtn) {
             activateBtn.classList.remove('hidden-button');
         }
@@ -179,7 +169,6 @@
             retakeBtn.classList.add('hidden-button');
         }
 
-        // Re-activate camera
         activateCamera();
         checkFormValidity();
     }
@@ -205,7 +194,6 @@
                 (error) => {
                     console.error('Error getting location:', error);
                     
-                    // For simulation, use dummy coordinates
                     currentLocation = {
                         latitude: -6.2088,
                         longitude: 106.8456
@@ -218,8 +206,6 @@
                     if (lonInput) lonInput.value = currentLocation.longitude;
                 }
             );
-        } else {
-            alert('Geolocation tidak didukung oleh browser ini.');
         }
     }
 
@@ -261,9 +247,8 @@
         const presensiType = typeSelect.value;
         const now = new Date();
 
-        // Format data untuk disimpan
         const presensiRecord = {
-            id: Date.now(), // unique ID
+            id: Date.now(),
             date: formatDateIndonesian(now),
             jamMasuk: presensiType === 'masuk' ? formatTime(now) : '-',
             jamPulang: presensiType === 'pulang' ? formatTime(now) : '-',
@@ -271,16 +256,11 @@
             lokasiPulang: presensiType === 'pulang' ? `${currentLocation.latitude.toFixed(6)}, ${currentLocation.longitude.toFixed(6)}` : '-',
             keterangan: 'Hadir',
             timestamp: now.getTime(),
-            foto: capturedImageData // Simpan foto untuk keperluan future
+            foto: capturedImageData
         };
 
-        // Simpan ke localStorage
         savePresensiToLocalStorage(presensiRecord);
-
-        // Show success modal
         showSuccessModal(presensiType, now);
-
-        // Reset form after short delay
         setTimeout(resetForm, 2000);
     }
 
@@ -308,15 +288,12 @@
     // Save presensi to localStorage
     function savePresensiToLocalStorage(record) {
         try {
-            // Get existing data
             let presensiData = JSON.parse(localStorage.getItem('presensiData') || '[]');
             
-            // Check if there's already a record for today
             const todayDate = record.date;
             const existingIndex = presensiData.findIndex(item => item.date === todayDate);
             
             if (existingIndex !== -1) {
-                // Update existing record
                 if (record.jamMasuk !== '-') {
                     presensiData[existingIndex].jamMasuk = record.jamMasuk;
                     presensiData[existingIndex].lokasiMasuk = record.lokasiMasuk;
@@ -326,14 +303,11 @@
                     presensiData[existingIndex].lokasiPulang = record.lokasiPulang;
                 }
             } else {
-                // Add new record
-                presensiData.unshift(record); // Add to beginning of array
+                presensiData.unshift(record);
             }
             
-            // Save back to localStorage
             localStorage.setItem('presensiData', JSON.stringify(presensiData));
-            
-            console.log('Presensi saved successfully:', record);
+            console.log('✅ Presensi saved successfully');
         } catch (error) {
             console.error('Error saving presensi:', error);
         }
@@ -416,35 +390,15 @@
                     cameraStream = null;
                 }
 
-                // Use global showDashboard function from menu_pages.js
-                if (typeof window.showDashboard === 'function') {
-                    window.showDashboard();
-                } else {
-                    // Fallback
-                    const presensiPage = document.getElementById('presensiPageContent');
-                    if (presensiPage) presensiPage.style.display = 'none';
-                    
-                    const mainDashboard = document.getElementById('mainDashboardContent');
-                    if (mainDashboard) mainDashboard.style.display = 'contents';
-                }
-
-                // Reset form
-                resetForm();
+                // Navigate back to dashboard
+                window.location.href = BASE_URL;
             });
         }
     }
 
-    // Initialize when presensi page is shown
-    window.initPresensiPage = initPresensiPage;
-
-    // Auto-initialize if presensi page exists on load
-    if (document.getElementById('presensiPageContent')) {
-        document.addEventListener('DOMContentLoaded', function() {
-            const presensiPage = document.getElementById('presensiPageContent');
-            if (presensiPage && presensiPage.style.display !== 'none') {
-                initPresensiPage();
-            }
-        });
-    }
+    // Auto-initialize on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initPresensiPage();
+    });
 
 })();

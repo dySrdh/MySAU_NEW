@@ -1,12 +1,9 @@
-<!-- Return Link OUTSIDE main container -->
-<a href="#" class="return-link" id="returnToMainFromPresensi">
-    <i class='bx bx-chevron-left'></i> Return to Main Page
+<a href="#" class="back-link" id="returnToMainFromPresensi">
+    <i class='bx bx-arrow-back'></i> Kembali ke Dashboard
 </a>
 
-<!-- Main Container -->
 <div class="presensi-page-container card">
     
-    <!-- Header dengan Box/Card Design -->
     <div class="presensi-header-box">
         <div class="presensi-title-group">
             <i class='bx bxs-time'></i>
@@ -14,11 +11,9 @@
         </div>
     </div>
 
-    <!-- Presensi Content -->
     <div class="presensi-content-wrapper">
         <div class="presensi-container">
             
-            <!-- Info Pekerja & DateTime Combined -->
             <div class="presensi-info-datetime-box">
                 <div class="worker-info">
                     <h3 id="presensiWorkerName">Lee Ji-eun</h3>
@@ -30,7 +25,6 @@
                 </div>
             </div>
 
-            <!-- Camera Section -->
             <div class="presensi-section">
                 <label class="section-label"><i class='bx bx-camera'></i> Foto Presensi</label>
                 <div class="camera-box" id="cameraBox">
@@ -42,7 +36,6 @@
                     </div>
                     <img id="capturedImage" style="display: none;" alt="Captured">
                     
-                    <!-- Retake button overlay - appears on captured image -->
                     <button class="btn-retake-overlay hidden-button" id="retakePhotoBtn">
                         <i class='bx bx-refresh'></i>
                     </button>
@@ -54,7 +47,6 @@
                 </div>
             </div>
 
-            <!-- Location Section -->
             <div class="presensi-section">
                 <label class="section-label"><i class='bx bx-map'></i> Lokasi Presensi</label>
                 <div class="location-grid">
@@ -69,7 +61,6 @@
                 </div>
             </div>
 
-            <!-- Jenis Presensi Dropdown -->
             <div class="presensi-section">
                 <label class="section-label"><i class='bx bx-list-ul'></i> Jenis Presensi</label>
                 <select id="presensiTypeSelect">
@@ -79,7 +70,6 @@
                 </select>
             </div>
 
-            <!-- Submit Button -->
             <div class="presensi-submit-section">
                 <button class="btn-submit-presensi" id="submitPresensiBtn" disabled>
                     <i class='bx bx-check-circle'></i> Submit Presensi
@@ -91,7 +81,7 @@
 
 </div>
 
-<!-- Success Modal -->
+
 <div class="modal-backdrop" id="presensiSuccessModal" style="display:none;">
     <div class="modal-content modal-success">
         <div class="modal-header">

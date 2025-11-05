@@ -1,3 +1,13 @@
+<?php
+$user = session()->get('user_session') ?? [
+    'name' => 'Nama User',
+    'id' => '000000',
+    'role' => 'Jabatan',
+    'department' => 'Departemen',
+    'avatar_url' => 'images/avatar.jpg'
+];
+?>
+
 <div class="card profile-card">
     <div class="profile-header">
         
@@ -9,9 +19,7 @@
         
         <button class="btn-icon-dropdown" id="profile-settings-btn">
             <i class='bx bxs-cog'></i>
-            
             <i class='bx bxs-chevron-down' id="profile-arrow-icon"></i>
-
         </button>
     </div>
     
@@ -27,18 +35,18 @@
     </div>
 
     <div class="profile-dropdown" id="profile-dropdown-menu">
-        <a href="#" class="dropdown-item">
+        <a href="<?= base_url('profile') ?>" class="dropdown-item">
             <i class='bx bxs-user-circle dropdown-icon-grey'></i>
             <span>Profile Settings</span>
         </a>
-        <a href="#" class="dropdown-item">
+        <a href="<?= base_url('change-password') ?>" class="dropdown-item">
             <i class='bx bxs-key dropdown-icon-grey'></i>
             <span>Change Password</span>
         </a>
 
         <hr class="dropdown-divider">
 
-        <a href="#" class="dropdown-item dropdown-item-signout">
+        <a href="<?= base_url('logout') ?>" class="dropdown-item dropdown-item-signout">
             <i class='bx bxs-log-out-circle dropdown-icon-red'></i>
             <span>Sign Out</span>
         </a>
