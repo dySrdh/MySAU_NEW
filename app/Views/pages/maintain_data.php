@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-K">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Pribadi - My SAU</title>
+    <title>Maintain Data - My SAU</title>
     
     <link rel="stylesheet" href="<?= base_url('css/global.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/home.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/menu.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/notification.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/menu_pages.css') ?>">
+    
+    <link rel="stylesheet" href="<?= base_url('css/maintain_data.css') ?>">
+    
     <link rel="stylesheet" href="<?= base_url('css/profile.css') ?>">
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -24,7 +28,7 @@
             <?= $this->include('components/v_todo') ?>
         </aside>
 
-        <?= $this->include('components/v_page_data_pribadi') ?>
+        <?= $this->include('components/v_page_maintain_data') ?>
 
     </div>
 
@@ -33,7 +37,7 @@
     <script>
         // Variabel global JS
         const BASE_URL = "<?= base_url() ?>";
-        const CURRENT_PAGE = "profile";
+        const CURRENT_PAGE = "maintain-data"; // <-- Set halaman aktif
         const ALL_WORKERS_DATA = <?= json_encode($workers ?? []) ?>; 
     </script>
     
@@ -45,12 +49,12 @@
     <script src="<?= base_url('js/task-modals.js') ?>"></script>
     <script src="<?= base_url('js/task-main.js') ?>"></script>
     
-    <script src="<?= base_url('js/profile.js') ?>"></script>
+    <script src="<?= base_url('js/maintain_data.js') ?>"></script>
 
     <script>
-        // Ini akan memanggil initProfilePage() dari file profile.js yang baru
-        if (typeof initProfilePage === 'function') {
-            initProfilePage();
+        // Panggil fungsi init jika ada
+        if (typeof initMaintainDataPage === 'function') {
+            initMaintainDataPage();
         }
     </script>
 

@@ -1,0 +1,235 @@
+/* =================================
+   DATA PENDING PEKERJA PAGE
+==================================== */
+
+#dataPendingPageContent,
+#penghentianListPageContent { /* <-- Menargetkan kedua halaman list */
+    display: flex;
+    flex-direction: column;
+    grid-column: 2 / -1; /* <-- INI PERBAIKANNYA */
+    max-width: 100%;
+    gap: 20px;
+}
+
+.page-main-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.data-table-container {
+    width: 100%;
+    box-sizing: border-box;
+    /* Style background, padding, dll. 
+       diambil dari wrapper .profile-page-container */
+}
+
+/* Kontrol Atas (Show & Search) */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.table-controls label {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.table-controls select,
+.table-controls input[type="search"] {
+    margin-left: 8px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.table-controls input[type="search"] {
+    margin-left: 8px;
+}
+
+/* Tabel */
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.data-table th,
+.data-table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #333;
+    /* white-space: nowrap; <-- Dihapus agar bisa wrap */
+}
+.data-table td:last-child {
+    white-space: nowrap;
+}
+
+.data-table thead {
+    background-color: #f8f9fa; 
+}
+
+.data-table thead th {
+    font-weight: 600;
+    color: #2176C0; 
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Tombol Detail */
+.btn-detail {
+    background-color: #2176C0;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-detail:hover {
+    background-color: #1a5f9a;
+}
+
+/* Footer Tabel (Info & Paginasi) */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.show-info {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.pagination {
+    display: flex;
+    gap: 5px;
+}
+
+.page-btn {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #2176C0;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.page-btn.active {
+    background-color: #2176C0;
+    color: white;
+    border-color: #2176C0;
+}
+
+.page-btn.disabled {
+    color: #aaa;
+    pointer-events: none;
+    border-color: #ddd;
+}
+
+.page-btn:not(.active):not(.disabled):hover {
+    background-color: #e6f0ff;
+}
+
+/* Tombol Aksi (Penghentian List) */
+.table-actions-header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.table-actions-header a {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.table-actions-header .btn-download {
+    background-color: #e6f7ff; 
+    color: #1890ff;
+    border: 1px solid #91d5ff;
+}
+.table-actions-header .btn-download:hover {
+    background-color: #d9f0ff;
+}
+
+.table-actions-header .btn-add {
+    background-color: #2176C0; 
+    color: #ffffff;
+    border: 1px solid #2176C0;
+}
+.table-actions-header .btn-add:hover {
+    background-color: #1a5f9a;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    #dataPendingPageContent,
+    #penghentianListPageContent {
+        grid-column: 1 / -1;
+    }
+    .table-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .table-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.btn-detail-alt {
+    background-color: #f39c12; /* Warna oranye/kuning */
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    display: inline-block; /* Agar rapi */
+    margin-left: 5px; /* Jarak dari tombol biru */
+}
+.btn-detail-alt:hover {
+    background-color: #e67e22; /* Oranye lebih gelap */
+}
+
+/* Pastikan tombol biru juga inline-block */
+.btn-detail {
+    display: inline-block;
+}

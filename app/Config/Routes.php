@@ -35,3 +35,11 @@ $routes->post('api/tasks/save', 'TaskController::save');
 $routes->post('api/tasks/delete/(:num)', 'TaskController::delete/$1');
 $routes->get('change-password', 'UserController::changePassword');
 $routes->get('logout', 'AuthController::logout');
+
+$routes->get('maintain-data', 'MaintainDataController::index');
+$routes->get('data-pending-pekerja', 'DataPendingController::index');
+$routes->get('penghentian-pekerja', 'PenghentianController::index');
+$routes->get('penghentian-pekerja/tambah', 'PenghentianController::tambah');
+$routes->get('data-pekerja', 'DataPekerjaController::index');
+$routes->get('data-pekerja/tambah', 'DataPekerjaController::tambah');
+$routes->get('maintain-data-presensi', 'MaintainPresensiController::index');

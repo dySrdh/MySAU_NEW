@@ -1,17 +1,20 @@
 <?php
+// Ambil data user dari session, atau gunakan data dummy jika tidak ada
 $user = session()->get('user_session') ?? [
     'name' => 'Nama User',
     'id' => '000000',
     'role' => 'Jabatan',
     'department' => 'Departemen',
-    'avatar_url' => 'images/avatar.jpg'
+    'avatar_url' => 'https://i.pravatar.cc/150?img=48' // URL dummy online
 ];
 ?>
 
 <div class="card profile-card">
     <div class="profile-header">
         
-        <img src="<?= base_url(esc($user['avatar_url'])) ?>" alt="Profile Picture" class="profile-pic">
+        <!-- Hapus base_url() agar URL online berfungsi -->
+        <img src="<?= esc($user['avatar_url']) ?>" alt="Profile Picture" class="profile-pic">
+        
         <div class="profile-info">
             <strong><?= esc($user['name']) ?></strong>
             <span><?= esc($user['id']) ?></span>

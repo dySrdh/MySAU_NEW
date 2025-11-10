@@ -1,8 +1,8 @@
-
+// File: profile.js
 (function() {
     'use strict';
 
-    // Dummy data untuk profile
+    // Dummy data untuk profile (diperbarui)
     const profileData = {
         personalNumber: '50000067',
         fullName: 'Lee Ji-eun',
@@ -18,7 +18,9 @@
         emergencyNumber: '+62 811-2345-6789',
         role: 'Officer',
         department: 'Business & Development Department',
-        avatarUrl: 'images/avatar.jpg',
+        // Avatar dummy online sesuai permintaan
+        avatarUrl: 'https://i.pravatar.cc/150?img=48', 
+        
         education: [
             {
                 level: 'S1',
@@ -27,6 +29,38 @@
                 faculty: 'Teknik Informatika',
                 gpa: '3.75',
                 graduationYear: '2015'
+            }
+        ],
+        // Data baru untuk keluarga
+        family: [
+            {
+                relationship: 'Ayah',
+                name: 'Lee Kuan Yew',
+                education: 'S2',
+                occupation: 'Pensiunan'
+            },
+            {
+                relationship: 'Ibu',
+                name: 'Kim Ji-won',
+                education: 'SMA',
+                occupation: 'Ibu Rumah Tangga'
+            }
+        ],
+        // Data baru untuk mutasi
+        mutationHistory: [
+            {
+                tmt: '01-01-2020',
+                jobTitle: 'Junior Officer',
+                unit: 'IT Department',
+                letterNo: '123/HRD/MUT/2020',
+                letterDate: '01-01-2020'
+            },
+            {
+                tmt: '01-06-2023',
+                jobTitle: 'Officer',
+                unit: 'Business & Development Department',
+                letterNo: '456/HRD/MUT/2023',
+                letterDate: '01-06-2023'
             }
         ]
     };
@@ -37,22 +71,19 @@
         scrollToTop();
         
         loadProfileData();
-        setupFamilyTabs();
+        // setupFamilyTabs(); // <-- Dihapus
         setupReturnButton();
     }
 
     // Scroll to top function
     function scrollToTop() {
-        // Scroll main container to top
         const mainContainer = document.querySelector('.main-container');
         if (mainContainer) {
             mainContainer.scrollTop = 0;
         }
-        
-        // Also scroll window to top as fallback
         window.scrollTo({
             top: 0,
-            behavior: 'instant' // Use 'instant' instead of 'smooth' for immediate scroll
+            behavior: 'instant'
         });
     }
 
@@ -64,43 +95,32 @@
         const profilePhotoId = document.getElementById('profilePhotoId');
         const profilePhotoRole = document.getElementById('profilePhotoRole');
 
-        if (profilePhoto) profilePhoto.src = profileData.avatarUrl;
+        // Menggunakan avatarUrl dari profileData
+        if (profilePhoto) profilePhoto.src = profileData.avatarUrl; 
         if (profilePhotoName) profilePhotoName.textContent = profileData.fullName;
         if (profilePhotoId) profilePhotoId.textContent = profileData.personalNumber;
         if (profilePhotoRole) profilePhotoRole.textContent = `${profileData.role} - ${profileData.department}`;
 
         // Personal Details
-        const personalNumber = document.getElementById('personalNumber');
-        const fullName = document.getElementById('fullName');
-        const ktpNumber = document.getElementById('ktpNumber');
-        const birthPlace = document.getElementById('birthPlace');
-        const gender = document.getElementById('gender');
-        const address = document.getElementById('address');
-        const religion = document.getElementById('religion');
-        const bloodType = document.getElementById('bloodType');
-        const maritalStatus = document.getElementById('maritalStatus');
-
-        if (personalNumber) personalNumber.textContent = profileData.personalNumber;
-        if (fullName) fullName.textContent = profileData.fullName;
-        if (ktpNumber) ktpNumber.textContent = profileData.ktpNumber;
-        if (birthPlace) birthPlace.textContent = profileData.birthPlace;
-        if (gender) gender.textContent = profileData.gender;
-        if (address) address.textContent = profileData.address;
-        if (religion) religion.textContent = profileData.religion;
-        if (bloodType) bloodType.textContent = profileData.bloodType;
-        if (maritalStatus) maritalStatus.textContent = profileData.maritalStatus;
+        document.getElementById('personalNumber').textContent = profileData.personalNumber;
+        document.getElementById('fullName').textContent = profileData.fullName;
+        document.getElementById('ktpNumber').textContent = profileData.ktpNumber;
+        document.getElementById('birthPlace').textContent = profileData.birthPlace;
+        document.getElementById('gender').textContent = profileData.gender;
+        document.getElementById('address').textContent = profileData.address;
+        document.getElementById('religion').textContent = profileData.religion;
+        document.getElementById('bloodType').textContent = profileData.bloodType;
+        document.getElementById('maritalStatus').textContent = profileData.maritalStatus;
 
         // Contact Details
-        const phoneNumber = document.getElementById('phoneNumber');
-        const mobileNumber = document.getElementById('mobileNumber');
-        const emergencyNumber = document.getElementById('emergencyNumber');
+        document.getElementById('phoneNumber').textContent = profileData.phoneNumber;
+        document.getElementById('mobileNumber').textContent = profileData.mobileNumber;
+        document.getElementById('emergencyNumber').textContent = profileData.emergencyNumber;
 
-        if (phoneNumber) phoneNumber.textContent = profileData.phoneNumber;
-        if (mobileNumber) mobileNumber.textContent = profileData.mobileNumber;
-        if (emergencyNumber) emergencyNumber.textContent = profileData.emergencyNumber;
-
-        // Education
+        // Load data tabel
         loadEducationData();
+        loadFamilyData(); // <-- Ditambahkan
+        loadMutationData(); // <-- Ditambahkan
     }
 
     // Load education table
@@ -108,42 +128,74 @@
         const tableBody = document.getElementById('educationTableBody');
         if (!tableBody) return;
 
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = ''; // Kosongkan isi tabel
 
-        profileData.education.forEach(edu => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${edu.level}</td>
-                <td>${edu.school}</td>
-                <td>${edu.status}</td>
-                <td>${edu.faculty}</td>
-                <td>${edu.gpa}</td>
-                <td>${edu.graduationYear}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
-
-    // Setup family tabs
-    function setupFamilyTabs() {
-        const familyTabs = document.querySelectorAll('.family-tab');
-        const familyContent = document.getElementById('familyContent');
-
-        if (!familyContent) return;
-
-        familyTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active class from all tabs
-                familyTabs.forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-
-                // Update content (dummy - no data)
-                familyContent.innerHTML = '<p class="no-data-text">Data Tidak Ditemukan</p>';
+        if (profileData.education && profileData.education.length > 0) {
+            profileData.education.forEach(edu => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${edu.level}</td>
+                    <td>${edu.school}</td>
+                    <td>${edu.status}</td>
+                    <td>${edu.faculty}</td>
+                    <td>${edu.gpa}</td>
+                    <td>${edu.graduationYear}</td>
+                `;
+                tableBody.appendChild(row);
             });
-        });
+        } else {
+            tableBody.innerHTML = '<tr><td colspan="6" class="no-data-text">Data Tidak Ditemukan</td></tr>';
+        }
     }
+
+    // Fungsi BARU untuk load data keluarga
+    function loadFamilyData() {
+        const tableBody = document.getElementById('familyTableBody');
+        if (!tableBody) return;
+
+        tableBody.innerHTML = ''; // Kosongkan isi tabel
+
+        if (profileData.family && profileData.family.length > 0) {
+            profileData.family.forEach(member => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${member.relationship}</td>
+                    <td>${member.name}</td>
+                    <td>${member.education}</td>
+                    <td>${member.occupation}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        } else {
+            tableBody.innerHTML = '<tr><td colspan="4" class="no-data-text">Data Tidak Ditemukan</td></tr>';
+        }
+    }
+
+    // Fungsi BARU untuk load data mutasi
+    function loadMutationData() {
+        const tableBody = document.getElementById('mutationTableBody');
+        if (!tableBody) return;
+
+        tableBody.innerHTML = ''; // Kosongkan isi tabel
+
+        if (profileData.mutationHistory && profileData.mutationHistory.length > 0) {
+            profileData.mutationHistory.forEach(history => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${history.tmt}</td>
+                    <td>${history.jobTitle}</td>
+                    <td>${history.unit}</td>
+                    <td>${history.letterNo}</td>
+                    <td>${history.letterDate}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        } else {
+            tableBody.innerHTML = '<tr><td colspan="5" class="no-data-text">Data Tidak Ditemukan</td></tr>';
+        }
+    }
+
+    // setupFamilyTabs(); // <-- Fungsi ini DIHAPUS
 
     // Setup return button
     function setupReturnButton() {
@@ -152,11 +204,9 @@
             returnBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Use global showDashboard function from menu_pages.js
                 if (typeof window.showDashboard === 'function') {
                     window.showDashboard();
                 } else {
-                    // Fallback
                     const profilePage = document.getElementById('profilePageContent');
                     if (profilePage) profilePage.style.display = 'none';
                     

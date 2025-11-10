@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-K">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Pribadi - My SAU</title>
+    <title>Maintain Data Presensi - My SAU</title>
     
     <link rel="stylesheet" href="<?= base_url('css/global.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/home.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/menu.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/notification.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/menu_pages.css') ?>">
+    
+    <link rel="stylesheet" href="<?= base_url('css/data_pending.css') ?>">
+    
     <link rel="stylesheet" href="<?= base_url('css/profile.css') ?>">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -24,17 +27,16 @@
             <?= $this->include('components/v_todo') ?>
         </aside>
 
-        <?= $this->include('components/v_page_data_pribadi') ?>
+        <?= $this->include('components/v_page_maintain_data_presensi') ?>
 
     </div>
 
     <?= $this->include('components/v_modals_todo') ?>
 
     <script>
-        // Variabel global JS
         const BASE_URL = "<?= base_url() ?>";
-        const CURRENT_PAGE = "profile";
-        const ALL_WORKERS_DATA = <?= json_encode($workers ?? []) ?>; 
+        const CURRENT_PAGE = "maintain-presensi"; // Set halaman aktif
+        const ALL_WORKERS_DATA = <?= json_encode($workers_json ?? []) ?>; 
     </script>
     
     <script src="<?= base_url('js/menu_pages.js') ?>"></script>
@@ -44,15 +46,6 @@
     <script src="<?= base_url('js/task-storage.js') ?>"></script>
     <script src="<?= base_url('js/task-modals.js') ?>"></script>
     <script src="<?= base_url('js/task-main.js') ?>"></script>
-    
-    <script src="<?= base_url('js/profile.js') ?>"></script>
-
-    <script>
-        // Ini akan memanggil initProfilePage() dari file profile.js yang baru
-        if (typeof initProfilePage === 'function') {
-            initProfilePage();
-        }
-    </script>
 
 </body>
 </html>

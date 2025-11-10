@@ -1,0 +1,174 @@
+/* =================================
+   ROOT LAYOUT UNTUK FORM
+==================================== */
+#dataPekerjaFormPageContent {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2 / -1; /* Melebar ke kanan */
+    max-width: 100%;
+    gap: 20px;
+}
+
+/* =================================
+   FORM TAMBAH PEKERJA
+==================================== */
+
+/* Style Form Umum */
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-sizing: border-box; 
+}
+.form-input[readonly] {
+    background-color: #e9ecef; 
+    cursor: not-allowed;
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+}
+
+.form-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* Grouping Radio Button */
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 40px; /* Samakan tinggi dengan form-input */
+}
+.radio-group input {
+    margin-right: -10px;
+}
+
+/* Wrapper input tanggal */
+.date-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+.date-input-wrapper .form-input {
+    padding-right: 35px; 
+}
+.date-input-wrapper i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1.1rem;
+}
+
+/* Tombol Simpan */
+.form-actions {
+    text-align: right; 
+    margin-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 25px;
+}
+.btn-simpan {
+    padding: 12px 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #2176C0; 
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.btn-simpan:hover {
+    background-color: #1a5f9a;
+}
+
+/* =================================
+   LAYOUT FORM 2 KOLOM (BARU)
+==================================== */
+.form-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 kolom sama besar */
+    gap: 0 30px; /* Tidak ada jarak baris, 30px jarak kolom */
+}
+
+.form-col-left,
+.form-col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Jarak antar field di dalam satu kolom */
+}
+
+/* Field khusus untuk hint (sebelah Nama Gadis Ibu) */
+.form-field-hint {
+    font-size: 0.85rem;
+    color: #888;
+    padding-top: 33px; /* Sejajarkan dengan input */
+}
+
+/* Grup input RT/RW */
+.form-field-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.form-field-group span {
+    font-size: 1.2rem;
+    color: #888;
+    padding-top: 30px; /* Sejajarkan */
+}
+.form-field-group input {
+    text-align: center;
+}
+
+
+/* Responsive: Ubah jadi 1 kolom di HP */
+@media (max-width: 900px) {
+    .form-layout-grid {
+        grid-template-columns: 1fr; /* 1 kolom */
+        gap: 24px 0;
+    }
+    
+    .form-field-hint {
+        display: none; /* Sembunyikan hint di HP */
+    }
+}
+
+@media (max-width: 768px) {
+    #dataPekerjaFormPageContent {
+        grid-column: 1 / -1; 
+    }
+}
+/* =================================
+   STYLE UNTUK VALIDASI (BARU)
+==================================== */
+
+/* Style untuk input yang tidak valid */
+.form-input.is-invalid {
+    border-color: #dc3545; /* Merah */
+    background-image: none; /* Hapus icon (jika ada) */
+}
+
+/* Style untuk pesan error di bawah input */
+.form-error-message {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    font-size: 0.8rem; /* Kecil */
+    color: #dc3545; /* Merah */
+    font-weight: 500;
+}

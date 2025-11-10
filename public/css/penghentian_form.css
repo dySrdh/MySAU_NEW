@@ -1,0 +1,164 @@
+/* =================================
+   ROOT LAYOUT UNTUK FORM
+==================================== */
+#penghentianFormPageContent {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2 / -1; /* <-- Perbaikan layout melebar */
+    max-width: 100%;
+    gap: 20px;
+}
+
+/* =================================
+   PENGHENTIAN PEKERJA FORM
+==================================== */
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-sizing: border-box; 
+}
+
+/* Ganti style span di profile.css agar tidak ada border bawah */
+#penghentianFormPageContent .profile-section .profile-field span {
+    border-bottom: none;
+    padding: 10px 0;
+    font-weight: 600; 
+}
+
+/* Bagian 1: Pencarian */
+.form-section-search {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.form-section-search label {
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-section-search select {
+    flex-grow: 1; 
+}
+
+.btn-cari {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #2176C0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.btn-cari:hover {
+    background-color: #1a5f9a;
+}
+
+/* Bagian 2 & 3: Detail dan Form Isian */
+#penghentianFormPageContent .profile-section {
+    margin-bottom: 25px;
+}
+
+/* Wrapper untuk input tanggal dengan icon */
+.date-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.date-input-wrapper .form-input {
+    padding-right: 35px; 
+}
+
+.date-input-wrapper i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1.1rem;
+}
+
+/* =================================
+   LAYOUT FORM 2 KOLOM BARU (DITAMBAHKAN)
+==================================== */
+
+/* Ganti .profile-grid dengan ini di bagian form */
+.form-grid-2-col {
+    display: grid;
+    /* Membuat 2 kolom yang sama lebarnya */
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 20px; /* Jarak vertikal 25px, horizontal 20px */
+}
+
+/* Class untuk field yang butuh 1 baris penuh (jika ada) */
+.form-field-full-width {
+    grid-column: 1 / -1; /* Span 2 kolom */
+}
+
+/* Kita ganti .profile-field menjadi .form-field 
+   agar lebih rapi untuk input */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Jarak antara label dan input */
+}
+
+.form-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* Responsive: Ubah jadi 1 kolom di HP */
+@media (max-config: 768px) {
+    .form-grid-2-col {
+        grid-template-columns: 1fr; /* 1 kolom */
+        gap: 20px;
+    }
+}
+
+/* Bagian 4: Tombol Simpan */
+.form-actions {
+    text-align: right; 
+    margin-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 25px;
+}
+
+.btn-simpan {
+    padding: 12px 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #28a745; 
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.btn-simpan:hover {
+    background-color: #218838;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #penghentianFormPageContent {
+        grid-column: 1 / -1; /* Full width di mobile */
+    }
+}

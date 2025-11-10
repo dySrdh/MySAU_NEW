@@ -1,23 +1,22 @@
 <?php
-
+// File: v_page_data_pribadi.php
+// (Kosongkan atau isi dengan logika PHP yang relevan jika ada)
 ?>
 
 <div id="profilePageContent">
-       <div class="page-header">
+    <div class="page-header">
         <a href="<?= base_url('/dashboard') ?>" class="back-link">
             <i class='bx bx-arrow-back'></i> Kembali ke Dashboard
         </a>
-</div>
+    </div>
 
     <div class="profile-page-container">
-     
         
         <div class="profile-header-box">
             <div class="profile-title-group">
                 <i class='bx bxs-user-detail'></i>
                 <h2>Data Pribadi</h2>
             </div>
-        
         </div>
 
         <div class="profile-content-wrapper">
@@ -27,7 +26,6 @@
                 <div class="profile-photo-section">
                     <div class="profile-photo-container">
                         <img id="profilePhoto" class="profile-photo" src="<?= base_url('images/avatar.jpg') ?>" alt="Profile Photo">
-                       
                     </div>
                     <div class="profile-photo-info">
                         <h3 id="profilePhotoName">Loading...</h3>
@@ -98,9 +96,7 @@
 
                 <div class="profile-section">
                     <h3 class="profile-section-title">Pendidikan</h3>
-                    
                     <div class="education-table"> 
-                        
                         <table>
                             <thead>
                                 <tr>
@@ -123,14 +119,48 @@
 
                 <div class="profile-section">
                     <h3 class="profile-section-title">Keluarga</h3>
-                    <div class="family-tabs">
-                        <button class="family-tab active" data-type="parents">Orang Tua</button>
-                        <button class="family-tab" data-type="spouse">Pasangan</button>
-                        <button class="family-tab" data-type="children">Anak</button>
-                    </div>
-                    <div id="familyContent" class="family-content">
-                        <p class="no-data-text">Data Tidak Ditemukan</p>
+                    <div class="education-table"> 
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Anggota Keluarga</th>
+                                    <th>Nama</th>
+                                    <th>Pendidikan</th>
+                                    <th>Pekerjaan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="familyTableBody">
+                                <tr>
+                                    <td colspan="4" class="loading-text">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
-            </div> </div> </div> </div> ```
+                <div class="profile-section">
+                    <h3 class="profile-section-title">History Mutasi Rotasi</h3>
+                    <div class="education-table"> 
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>TMT Penugasan</th>
+                                    <th>Jabatan</th>
+                                    <th>Unit Kerja</th>
+                                    <th>No. Surat Penugasan</th>
+                                    <th>Tanggal Surat Penugasan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mutationTableBody">
+                                <tr>
+                                    <td colspan="5" class="loading-text">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div> 
+        </div> 
+    </div> 
+</div>
