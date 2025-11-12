@@ -40,7 +40,7 @@ class AllMenusController extends BaseController
             ['id' => 7, 'name' => 'Cuti', 'icon_class' => 'bx bxs-calendar-x', 'link_url' => 'cuti', 'category' => 'Layanan SDM'],
             ['id' => 8, 'name' => 'Pendidikan & Pelatihan', 'icon_class' => 'bx bxs-graduation', 'link_url' => 'pelatihan', 'category' => 'Layanan SDM'],
             ['id' => 9, 'name' => 'SAU Drive', 'icon_class' => 'bx bxs-cloud-upload', 'link_url' => 'drive', 'category' => 'Maintain Data'],
-            
+            ['id' => 12, 'name' => 'Struktur Organisasi', 'icon_class' => 'bx bx-sitemap', 'link_url' => 'struktur-organisasi', 'category' => 'Other'],
             ['id' => 11, 'name' => 'Maintain Data', 'icon_class' => 'bx bxs-data', 'link_url' => 'maintain-data', 'category' => 'Maintain Data'],
             
             ['id' => 10, 'name' => 'Rekam Aktivitas', 'icon_class' => 'bx bxs-notepad', 'link_url' => 'aktivitas', 'category' => 'Monitoring'],

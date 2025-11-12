@@ -43,3 +43,4 @@ $routes->get('penghentian-pekerja/tambah', 'PenghentianController::tambah');
 $routes->get('data-pekerja', 'DataPekerjaController::index');
 $routes->get('data-pekerja/tambah', 'DataPekerjaController::tambah');
 $routes->get('maintain-data-presensi', 'MaintainPresensiController::index');
+$routes->get('struktur-organisasi', 'StrukturOrganisasiController::index');

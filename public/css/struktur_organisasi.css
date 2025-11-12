@@ -1,0 +1,400 @@
+/* =================================
+   CSS DARI USER (TETAP SAMA)
+==================================== */
+body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+}
+
+html {
+    overflow-x: hidden !important;
+}
+
+.main-container {
+    overflow-x: hidden !important;
+    max-width: 100%;
+}
+
+#strukturOrganisasiPageContent {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1 / -1; 
+    max-width: 100%;
+    width: 100%;
+    gap: 20px;
+    padding: 30px; 
+    box-sizing: border-box;
+    overflow-x: hidden !important;
+}
+
+.profile-page-container,
+.profile-content-wrapper {
+    overflow-x: hidden !important;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    #strukturOrganisasiPageContent {
+        padding: 15px; 
+    }
+}
+
+.org-chart-search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.org-chart-search-bar input[type="text"] {
+    flex: 1;
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    background: #ffffff;
+}
+
+.org-chart-search-bar input[type="text"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.btn-search {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #1e293b;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-search:hover {
+    background: #334155;
+}
+
+.org-chart-container {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    overflow: auto;
+}
+
+#d3-chart-container {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.org-chart-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+.org-chart-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+.org-chart-container::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 5px;
+}
+.org-chart-container::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+.link {
+    stroke: #cbd5e0 !important;
+    stroke-width: 2px !important;
+    fill: none !important;
+}
+
+.node {
+    cursor: pointer;
+}
+
+.node-rect {
+    fill: transparent !important;
+    stroke: none !important;
+}
+
+.node-button-foreign-object {
+    overflow: visible;
+}
+.node-button-g {
+    pointer-events: none;
+}
+.node-button-g > * {
+    pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+    #d3-chart-container {
+        height: 60vh;
+        min-height: 400px;
+    }
+    .org-chart-search-bar {
+        flex-direction: column;
+    }
+    .org-chart-search-bar input[type="text"],
+    .org-chart-search-bar .btn-search {
+        width: 100%;
+    }
+}
+
+/* =================================
+   STYLING BARU UNTUK NODE
+==================================== */
+
+/* Kontainer utama node */
+.org-node-card {
+    width: 240px;
+    height: 85px; /* Dikecilkan karena total pekerja hilang */
+    padding: 12px 16px;
+    background: #ffffff;
+    border: 2px solid #cbd5e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Style saat node di-highlight (hasil search) */
+.org-node-highlight {
+    background: #fffbeb;
+    border-color: #f59e0b;
+}
+
+/* Badge Tipe Organisasi (PT, DIV, etc) */
+.org-node-badge {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: #64748b; /* Default */
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* Warna-warna badge */
+.org-node-badge-hq { background: #dc2626; }
+.org-node-badge-pt { background: #2563eb; }
+.org-node-badge-div { background: #7c3aed; }
+.org-node-badge-dept { background: #059669; }
+
+/* Nama Organisasi */
+.org-node-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1e293b;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding-right: 60px; /* Spasi agar tidak tertutup badge */
+    margin-top: 10px; /* Sedikit ke bawah agar rapi */
+}
+
+/* Tombol Parent (↑) */
+.org-node-btn-parent {
+    position: absolute;
+    top: -12px; /* Di atas node */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #8b5cf6; /* Ungu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    border: 2px solid #8b5cf6;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 10;
+}
+.org-node-btn-parent:hover {
+    background-color: #f5f3ff;
+}
+
+/* =========================================== */
+/* PERBAIKAN CENTERING TOMBOL CHILD ADA DI SINI */
+/* =========================================== */
+.org-node-btn-child {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #4a5568; /* Abu-abu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    border: 2px solid #4a5568;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    cursor: pointer;
+    
+    /* === PERBAIKAN DITAMBAHKAN DI SINI === */
+    position: relative; 
+    left: 50%;
+    transform: translateX(-50%) translateY(1px); /* Centering paksa */
+}
+.org-node-btn-child:hover {
+    background-color: #f8fafc;
+}
+
+
+/* =================================
+   STYLING BARU UNTUK MODAL
+==================================== */
+
+.org-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+.org-modal-content {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px; /* Lebih ramping */
+    max-height: 80vh;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Agar header radiusnya pas */
+}
+
+/* Header Modal */
+.org-modal-header {
+    padding: 16px 20px;
+    background: #f8fafc; /* Latar belakang netral */
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.org-modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.org-modal-close-btn {
+    background: #e2e8f0;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #475569;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: background 0.2s;
+}
+.org-modal-close-btn:hover {
+    background: #cbd5e0;
+}
+
+/* Body Modal (List Karyawan) */
+.org-modal-body {
+    padding: 12px 20px; /* Padding atas bawah dikurangi */
+    overflow-y: auto;
+    max-height: calc(80vh - 80px);
+}
+
+.org-modal-employee-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+/* Highlight untuk hasil search */
+.org-modal-employee-highlight {
+    border-color: #f59e0b;
+    background: #fef3c7;
+}
+
+.org-modal-employee-card:last-child {
+    margin-bottom: 0;
+}
+
+.org-modal-employee-photo {
+    width: 45px; /* Lebih kecil */
+    height: 45px;
+    border-radius: 50%; /* Bulat */
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.org-modal-employee-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.org-modal-employee-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #1e293b;
+    margin-bottom: 2px;
+}
+
+.org-modal-employee-position {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+.org-modal-employee-pernr {
+    font-size: 12px;
+    color: #94a3b8;
+    font-family: monospace;
+}
+
+.org-modal-searched-badge {
+    background: #f59e0b;
+    color: white;
+    font-size: 9px;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Pesan jika tidak ada karyawan */
+.org-modal-empty {
+    text-align: center;
+    color: #64748b;
+    padding: 40px 20px;
+    font-size: 14px;
+}
